@@ -1,6 +1,6 @@
 {
   "name": "dom2html",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Serializes a dom-like tree into HTML",
   "main": "serialize.js",
   "scripts": {
@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/avgp/dom2html#readme",
   "dependencies": {
-    "jest": "^24.9.0",
     "jsdom": "^15.2.1"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
