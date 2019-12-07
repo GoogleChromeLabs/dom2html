@@ -1,0 +1,17 @@
+<html lang="en"><head><script>
+      class MySlottedContent extends HTMLElement {
+        constructor() {
+          super();
+          
+          this.attachShadow({ mode: 'open' });
+        }
+        
+        connectedCallback() {
+          let p = document.createElement('p');
+          p.innerHTML = 'Here is the projected content: <slot></slot>';
+          this.shadowRoot.appendChild(p);
+        }
+      }
+
+      window.customElements.define('my-slotted-content', MySlottedContent);
+    </script></head><body><my-slotted-content><p>Here is the projected content: <slot>Hello Light DOM :)</slot></p></my-slotted-content></body></html>

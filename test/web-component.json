@@ -1,0 +1,141 @@
+{
+	"nodeId": 1,
+	"backendNodeId": 3,
+	"nodeType": 9,
+	"nodeName": "#document",
+	"localName": "",
+	"nodeValue": "",
+	"childNodeCount": 2,
+	"children": [{
+		"nodeId": 2,
+		"parentId": 1,
+		"backendNodeId": 5,
+		"nodeType": 10,
+		"nodeName": "html",
+		"localName": "",
+		"nodeValue": "",
+		"publicId": "",
+		"systemId": ""
+	}, {
+		"nodeId": 3,
+		"parentId": 1,
+		"backendNodeId": 6,
+		"nodeType": 1,
+		"nodeName": "HTML",
+		"localName": "html",
+		"nodeValue": "",
+		"childNodeCount": 2,
+		"children": [{
+			"nodeId": 4,
+			"parentId": 3,
+			"backendNodeId": 7,
+			"nodeType": 1,
+			"nodeName": "HEAD",
+			"localName": "head",
+			"nodeValue": "",
+			"childNodeCount": 1,
+			"children": [{
+				"nodeId": 5,
+				"parentId": 4,
+				"backendNodeId": 8,
+				"nodeType": 1,
+				"nodeName": "SCRIPT",
+				"localName": "script",
+				"nodeValue": "",
+				"childNodeCount": 1,
+				"children": [{
+					"nodeId": 6,
+					"parentId": 5,
+					"backendNodeId": 9,
+					"nodeType": 3,
+					"nodeName": "#text",
+					"localName": "",
+					"nodeValue": "\n      class MySlottedContent extends HTMLElement {\n        constructor() {\n          super();\n          \n          this.attachShadow({ mode: 'open' });\n        }\n        \n        connectedCallback() {\n          let p = document.createElement('p');\n          p.innerHTML = 'Here is the projected content: <slot></slot>';\n          this.shadowRoot.appendChild(p);\n        }\n      }\n\n      window.customElements.define('my-slotted-content', MySlottedContent);\n    "
+				}],
+				"attributes": []
+			}],
+			"attributes": []
+		}, {
+			"nodeId": 7,
+			"parentId": 3,
+			"backendNodeId": 10,
+			"nodeType": 1,
+			"nodeName": "BODY",
+			"localName": "body",
+			"nodeValue": "",
+			"childNodeCount": 1,
+			"children": [{
+				"nodeId": 8,
+				"parentId": 7,
+				"backendNodeId": 11,
+				"nodeType": 1,
+				"nodeName": "MY-SLOTTED-CONTENT",
+				"localName": "my-slotted-content",
+				"nodeValue": "",
+				"childNodeCount": 1,
+				"children": [{
+					"nodeId": 13,
+					"parentId": 8,
+					"backendNodeId": 15,
+					"nodeType": 3,
+					"nodeName": "#text",
+					"localName": "",
+					"nodeValue": "Hello Light DOM :)"
+				}],
+				"attributes": [],
+				"shadowRoots": [{
+					"nodeId": 9,
+					"backendNodeId": 12,
+					"nodeType": 11,
+					"nodeName": "#document-fragment",
+					"localName": "",
+					"nodeValue": "",
+					"childNodeCount": 1,
+					"children": [{
+						"nodeId": 10,
+						"parentId": 9,
+						"backendNodeId": 4,
+						"nodeType": 1,
+						"nodeName": "P",
+						"localName": "p",
+						"nodeValue": "",
+						"childNodeCount": 2,
+						"children": [{
+							"nodeId": 11,
+							"parentId": 10,
+							"backendNodeId": 13,
+							"nodeType": 3,
+							"nodeName": "#text",
+							"localName": "",
+							"nodeValue": "Here is the projected content: "
+						}, {
+							"nodeId": 12,
+							"parentId": 10,
+							"backendNodeId": 14,
+							"nodeType": 1,
+							"nodeName": "SLOT",
+							"localName": "slot",
+							"nodeValue": "",
+							"childNodeCount": 0,
+							"children": [],
+							"attributes": [],
+							"distributedNodes": [{
+								"nodeType": 3,
+								"nodeName": "#text",
+								"backendNodeId": 15
+							}]
+						}],
+						"attributes": []
+					}],
+					"shadowRootType": "open"
+				}]
+			}],
+			"attributes": []
+		}],
+		"attributes": ["lang", "en"],
+		"frameId": "C8FF37DC4F8DB408E342A3BD168804CA"
+	}],
+	"documentURL": "file:///Users/martinsplitt/code/experimental-render/test.html",
+	"baseURL": "file:///Users/martinsplitt/code/experimental-render/test.html",
+	"xmlVersion": ""
+}

@@ -1,0 +1,27 @@
+{
+  "name": "dom2html",
+  "version": "1.0.0",
+  "description": "Serializes a dom-like tree into HTML",
+  "main": "serialize.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avgp/dom2html.git"
+  },
+  "keywords": [
+    "dom",
+    "html"
+  ],
+  "author": "Martin Splitt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avgp/dom2html/issues"
+  },
+  "homepage": "https://github.com/avgp/dom2html#readme",
+  "dependencies": {
+    "jest": "^24.9.0",
+    "jsdom": "^15.2.1"
+  }
+}
