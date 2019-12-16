@@ -1,6 +1,6 @@
 {
   "name": "dom2html",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Serializes a dom-like tree into HTML",
   "main": "serialize.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "html"
   ],
   "author": "Martin Splitt",
-  "license": "Apache",
+  "license": "apache-2.0",
   "bugs": {
     "url": "https://github.com/avgp/dom2html/issues"
   },
