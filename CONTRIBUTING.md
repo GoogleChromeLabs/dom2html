@@ -3,6 +3,31 @@
 We'd love to accept your patches and contributions to this project. There are
 just a few small guidelines you need to follow.
 
+## How to set up your local environment
+
+With [node.js](https://nodejs.org) installed, follow the steps below or run the following commands:
+
+1. Get a local copy of this repository
+2. Install the dependencies with `npm install`
+
+```
+git clone https://github.com/GoogleChromeLabs/dom2html.git
+cd dom2html
+npm install
+```
+
+## Writing and running tests
+
+The tests are written with [Jest](https://jestjs.io/) and can be found in the `*.test.js` files, named like the code they test (e.g. `serialize.js` functionality is tested in the `serialize.test.js` file). HTML test files (called fixtures) are stored in the `test` folder.
+
+Tests can be run with `npm test`.
+
+## What to include in a pull request
+
+- The commits with the things you want to add / remove / fix :)
+- A test case for the fix or feature (not applicable for docs-only pull requests)
+- Updated docs, matching the code changes (if applicable)
+
 ## Contributor License Agreement
 
 Contributions to this project must be accompanied by a Contributor License
