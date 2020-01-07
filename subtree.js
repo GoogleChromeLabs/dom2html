@@ -43,6 +43,16 @@ module.exports = {
       return elem;
     }
 
+    // if it's an iframe, use that...
+    if(nodeLike.contentDocument && nodeLike.contentDocument.children.length > 0) {
+    nodeLike.contentDocument.children
+      .map(child => this.constructSubtreeForNode(document, child, nodeCallback))
+      .forEach(child => {
+        elem.appendChild(child)
+      return elem;
+      });
+    }
+
     // if it's not a shadow host, copy children..
     nodeLike.children
       .map(child => this.constructSubtreeForNode(document, child, nodeCallback))
