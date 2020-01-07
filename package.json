@@ -1,6 +1,6 @@
 {
   "name": "dom2html",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Serializes a dom-like tree into HTML",
   "main": "serialize.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/avgp/dom2html.git"
+    "url": "git+https://github.com/GoogleChromeLabs/dom2html.git"
   },
   "keywords": [
     "dom",
@@ -17,9 +17,9 @@
   "author": "Martin Splitt",
   "license": "apache-2.0",
   "bugs": {
-    "url": "https://github.com/avgp/dom2html/issues"
+    "url": "https://github.com/GoogleChromeLabs/dom2html/issues"
   },
-  "homepage": "https://github.com/avgp/dom2html#readme",
+  "homepage": "https://github.com/GoogleChromeLabs/dom2html#readme",
   "dependencies": {
     "jsdom": "^15.2.1"
   },
