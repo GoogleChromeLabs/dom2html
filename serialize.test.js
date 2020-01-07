@@ -27,3 +27,14 @@ test('serializes a shadow DOM', () => {
   const expected = fs.readFileSync('./test/web-component.html', 'utf8');
   expect(result).toBe(expected);
 });
+
+test('serializes and inlines an iframe', () => {
+  const result = serialize(require('./test/iframe.json'));
+  const expected = fs.readFileSync('./test/inlineIframe-true.html', 'utf8');
+  expect(result).toBe(expected);
+});
+test('serializes and do not inline an iframe', () => {
+  const result = serialize(require('./test/iframe.json'), false);
+  const expected = fs.readFileSync('./test/inlineIframe-false.html', 'utf8');
+  expect(result).toBe(expected);
+});

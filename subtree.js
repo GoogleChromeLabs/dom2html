@@ -23,7 +23,7 @@ module.exports = {
    * @param {function} nodeCallback (optional) A callback that receives the node-like and the created element after attributes are copied but before the subtree is created.
    * @returns {JSDOM.Node} The DOM subtree
    */
-  constructSubtreeForNode: function(document, nodeLike, iframe, nodeCallback) {
+  constructSubtreeForNode: function(document, nodeLike, includeIframes, nodeCallback) {
     const elem = domNode.createElemForNode(document, nodeLike);
 
     if(!nodeLike.children) nodeLike.children = []; // normalise weird nodes.
@@ -38,26 +38,24 @@ module.exports = {
 
     // if it's a shadow host, use that...
     if(nodeLike.shadowRoots && nodeLike.shadowRoots.length > 0) {
-      const shadowTree = this.constructShadowTree(document, nodeLike, nodeLike.shadowRoots[0]);
+      const shadowTree = this.constructShadowTree(document, nodeLike, includeIframes, nodeLike.shadowRoots[0]);
       elem.appendChild(shadowTree);
       return elem;
     }
 
-    // if it's an iframe, copy the children of contentDocument.
-    if(iframe) {
-    if(nodeLike.contentDocument && nodeLike.contentDocument.children.length > 0) {
+    // if it's an iframe, and includeIframes is true copy the children of contentDocument.
+    if(includeIframes && nodeLike.contentDocument && nodeLike.contentDocument.children.length > 0) {
     nodeLike.contentDocument.children
-      .map(child => this.constructSubtreeForNode(document, child, iframe, nodeCallback))
+      .map(child => this.constructSubtreeForNode(document, child, includeIframes, nodeCallback))
       .forEach(child => {
         elem.appendChild(child)
       return elem;
       });
     }
-  }
 
     // if it's not a shadow host, copy children..
     nodeLike.children
-      .map(child => this.constructSubtreeForNode(document, child, iframe, nodeCallback))
+      .map(child => this.constructSubtreeForNode(document, child, includeIframes, nodeCallback))
       .forEach(child => {
         elem.appendChild(child)
       });
@@ -73,7 +71,7 @@ module.exports = {
    * @param {dom-like node} shadowTree 
    * @returns {JSDOM.Node} JSDOM.Node with all children
    */
-  constructShadowTree: function(document, hostNode, shadowTree) {
+  constructShadowTree: function(document, hostNode, includeIframes, shadowTree) {
     // Documented process at https://drafts.csswg.org/css-scoping/#flattening
 
     // create a lookup dict of children by backendNodeId for distributing nodes later
@@ -82,11 +80,11 @@ module.exports = {
 
     // create the shadow host fragment
     const elem = domNode.createElemForNode(document, shadowTree);
-
+   
     function distributeNodes(node, elem) {
       if(!node.distributedNodes) return;
       node.distributedNodes.forEach(distributedNode => {
-        const distributedElem = this.constructSubtreeForNode(document, backendNodes[distributedNode.backendNodeId]);
+        const distributedElem = this.constructSubtreeForNode(document, backendNodes[distributedNode.backendNodeId], includeIframes);
         elem.appendChild(distributedElem);
       })
     }
@@ -94,7 +92,7 @@ module.exports = {
     // walk the tree...
     shadowTree.children
       .map(child => {
-        return this.constructSubtreeForNode(document, child, distributeNodes.bind(this))
+        return this.constructSubtreeForNode(document, child, includeIframes, distributeNodes.bind(this))
       })
       .forEach(child => elem.appendChild(child))
 
