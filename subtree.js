@@ -23,7 +23,7 @@ module.exports = {
    * @param {function} nodeCallback (optional) A callback that receives the node-like and the created element after attributes are copied but before the subtree is created.
    * @returns {JSDOM.Node} The DOM subtree
    */
-  constructSubtreeForNode: function(document, nodeLike, nodeCallback) {
+  constructSubtreeForNode: function(document, nodeLike, iframe, nodeCallback) {
     const elem = domNode.createElemForNode(document, nodeLike);
 
     if(!nodeLike.children) nodeLike.children = []; // normalise weird nodes.
@@ -43,19 +43,21 @@ module.exports = {
       return elem;
     }
 
-    // if it's an iframe, use that...
+    // if it's an iframe, copy the children of contentDocument.
+    if(iframe) {
     if(nodeLike.contentDocument && nodeLike.contentDocument.children.length > 0) {
     nodeLike.contentDocument.children
-      .map(child => this.constructSubtreeForNode(document, child, nodeCallback))
+      .map(child => this.constructSubtreeForNode(document, child, iframe, nodeCallback))
       .forEach(child => {
         elem.appendChild(child)
       return elem;
       });
     }
+  }
 
     // if it's not a shadow host, copy children..
     nodeLike.children
-      .map(child => this.constructSubtreeForNode(document, child, nodeCallback))
+      .map(child => this.constructSubtreeForNode(document, child, iframe, nodeCallback))
       .forEach(child => {
         elem.appendChild(child)
       });

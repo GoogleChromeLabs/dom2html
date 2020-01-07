@@ -18,7 +18,7 @@ const { JSDOM } = jsdom; // ughhh, why?
 const domNode = require('./dom-node');
 const subtree = require('./subtree');
 
-module.exports = function serialize(domLike) {
+module.exports = function serialize(domLike, iframe = true) {
   const outputDOM = new JSDOM();
   const document = outputDOM.window.document;
   const rootNode = document.children[0];
@@ -34,7 +34,7 @@ module.exports = function serialize(domLike) {
 
     node.children.forEach(n => {
       if (n.childNodeCount === undefined) return; // weird, useless noise in the tree for some reason
-      const child = subtree.constructSubtreeForNode(document, n);
+      const child = subtree.constructSubtreeForNode(document, n,  iframe);
       rootNode.appendChild(child);      
     });
   });
