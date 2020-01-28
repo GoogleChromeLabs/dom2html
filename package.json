@@ -1,6 +1,6 @@
 {
   "name": "dom2html",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Serializes a dom-like tree into HTML",
   "main": "serialize.js",
   "scripts": {
