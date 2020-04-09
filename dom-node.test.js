@@ -35,7 +35,7 @@ describe("createElemForNode", () => {
     };
 
     const result = createElemForNode(document, nodeLike);
-    const expected = document.createElement("div");
+    const expected = document.createComment("unsupported element");
 
     expect(result).toEqual(expected);
   });
@@ -92,7 +92,7 @@ describe("createElemForNode", () => {
     };
 
     const result = createElemForNode(document, nodeLike);
-    const expected = document.createCDATASection(nodeLike.nodeValue);
+    const expected = document.createComment("unsupported element");
 
     expect(result).toEqual(expected);
   });
