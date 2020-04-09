@@ -2,7 +2,7 @@
 Serializes a dom-like JSON tree into HTML.
 This is helpful if you end up with a DOM-like JSON object and need to serialize it to HTML.
 An example use case is using [puppeteer](https://pptr.dev/) to get the DOM tree from a page 
-and wanting to recreate the flattened HTML including shadow roots.
+and wanting to recreate the flattened HTML including shadow roots, and by default, the contents of iframes.
 
 ## An example
 
@@ -212,6 +212,17 @@ const jsonDOM = require('./dom.json');
 
 console.log(serialize(jsonDOM));
 ```
+
+## Prevent <iframe> content from being serialized
+
+If your DOM-like tree contains iframe nodes, and you don't want to serialize the contents of these and have them included in the outputted html, add FALSE as a flag:
+```javascript
+const serialize = require('dom2html');
+const jsonDOM = require('./dom.json');
+
+console.log(serialize(jsonDOM, FALSE));
+```
+
 
 ## Current state
 
