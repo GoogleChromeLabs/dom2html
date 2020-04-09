@@ -41,11 +41,12 @@ module.exports = {
         return document.createTextNode(nodeLike.nodeValue);
         break;
       case NODE_TYPES.CDATA_NODE: //CDATA_NODE
-        return document.createCDATASection(nodeLike.nodeValue);
+        console.log("Found unsupported node:", nodeLike);
+        return document.createComment("unsupported element");
         break;
       case NODE_TYPES.PROCESSING_INSTRUCTION_NODE: //PROCESSING_INSTRUCTION_NODE
         console.log("Found unsupported node:", nodeLike);
-        return document.createElement("div");
+        return document.createComment("unsupported element");
         break;
       case NODE_TYPES.COMMENT_NODE: // COMMENT_NODE
         return document.createComment(nodeLike.nodeValue);
