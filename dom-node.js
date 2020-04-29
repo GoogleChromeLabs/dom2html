@@ -68,11 +68,7 @@ module.exports = {
         if (['all', 'console'].includes(domErrorOutput)) {
           console.log("Found unsupported node:", nodeLike);
         }
-        if (['all', 'comments'].includes(domErrorOutput)) {
-          return document.createComment("unsupported element: " + JSON.stringify(nodeLike)).createDocumentFragment();
-        } else {
           return document.createDocumentFragment();
-        }
         break;
       case NODE_TYPES.DOCUMENT_TYPE_NODE: // DOCUMENT_TYPE_NODE
         if (['all', 'console'].includes(domErrorOutput)) {
