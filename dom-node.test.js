@@ -11,7 +11,7 @@ describe("createElemForNode", () => {
       nodeName: "HTML"
     };
 
-    const result = createElemForNode(document, nodeLike);
+    const result = createElemForNode(document, 'all', nodeLike);
     const expected = document.createElement(nodeLike.nodeName);
 
     expect(result).toEqual(expected);
@@ -23,7 +23,7 @@ describe("createElemForNode", () => {
       nodeValue: "test value"
     };
 
-    const result = createElemForNode(document, nodeLike);
+    const result = createElemForNode(document, 'all', nodeLike);
     const expected = document.createTextNode(nodeLike.nodeValue);
 
     expect(result).toEqual(expected);
@@ -34,8 +34,8 @@ describe("createElemForNode", () => {
       nodeType: NODE_TYPES.PROCESSING_INSTRUCTION_NODE
     };
 
-    const result = createElemForNode(document, nodeLike);
-    const expected = document.createComment("unsupported element");
+    const result = createElemForNode(document, 'all', nodeLike);
+    const expected = document.createComment("unsupported element: " + JSON.stringify(nodeLike));
 
     expect(result).toEqual(expected);
   });
@@ -46,7 +46,7 @@ describe("createElemForNode", () => {
       nodeValue: "test value"
     };
 
-    const result = createElemForNode(document, nodeLike);
+    const result = createElemForNode(document, 'all', nodeLike);
     const expected = document.createComment(nodeLike.nodeValue);
 
     expect(result).toEqual(expected);
@@ -57,7 +57,7 @@ describe("createElemForNode", () => {
       nodeType: NODE_TYPES.DOCUMENT_NODE
     };
 
-    const result = createElemForNode(document, nodeLike);
+    const result = createElemForNode(document, 'all', nodeLike);
     const expected = document.createDocumentFragment();
 
     expect(result).toEqual(expected);
@@ -68,8 +68,8 @@ describe("createElemForNode", () => {
       nodeType: NODE_TYPES.DOCUMENT_TYPE_NODE
     };
 
-    const result = createElemForNode(document, nodeLike);
-    const expected = document.createComment("unsupported element");
+    const result = createElemForNode(document, 'all', nodeLike);
+    const expected = document.createComment("unsupported element: " + JSON.stringify(nodeLike));
 
     expect(result).toEqual(expected);
   });
@@ -79,7 +79,7 @@ describe("createElemForNode", () => {
       nodeType: NODE_TYPES.DOCUMENT_FRAGMENT_NODE
     };
 
-    const result = createElemForNode(document, nodeLike);
+    const result = createElemForNode(document, 'all', nodeLike);
     const expected = document.createDocumentFragment();
 
     expect(result).toEqual(expected);
@@ -91,8 +91,8 @@ describe("createElemForNode", () => {
       nodeValue: "test value"
     };
 
-    const result = createElemForNode(document, nodeLike);
-    const expected = document.createComment("unsupported element");
+    const result = createElemForNode(document, 'all', nodeLike);
+    const expected = document.createComment("unsupported element: " + JSON.stringify(nodeLike));
 
     expect(result).toEqual(expected);
   });
