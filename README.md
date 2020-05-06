@@ -4,6 +4,24 @@ This is helpful if you end up with a DOM-like JSON object and need to serialize 
 An example use case is using [puppeteer](https://pptr.dev/) to get the DOM tree from a page 
 and wanting to recreate the flattened HTML including shadow roots, and by default, the contents of iframes.
 
+## Usage
+
+```javascript
+const serialize = require('dom2html');
+const jsonDOM = require('./dom.json');
+
+console.log(serialize(jsonDOM, true, 'all'));
+```
+
+## Parameters
+serialize accepts three inputs
+```javascript
+serialize(jsonDOM, includeIframes, domErrorOutput)
+```
+*jsonDom* is the nodelke JSON tree
+*includeIframes* is a boolean flag to define if you want to serialize iframe content, **optional, defaults to true**
+*domErrorOutput* is a string that defines where dom2html outputs errors if it cannot serialzie a node, 'all' outputs to console & inserts a html comment in the outputted html, 'console' only outputs to console.log(), 'comments' only outputs to html comments and silent outputs to neither. **optional, defaults to all**
+
 ## An example
 
 Let's say we have this JSON representation of a webpage:
@@ -223,6 +241,15 @@ const jsonDOM = require('./dom.json');
 console.log(serialize(jsonDOM, FALSE));
 ```
 
+## Suppress errors
+
+If you wanted to suppress any notifications of errors of unsupported node types, you could add the 'silent' value
+```javascript
+const serialize = require('dom2html');
+const jsonDOM = require('./dom.json');
+
+console.log(serialize(jsonDOM, TRUE, 'silent'));
+```
 
 ## Current state
 

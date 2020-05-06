@@ -17,8 +17,13 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom; // ughhh, why?
 const domNode = require('./dom-node');
 const subtree = require('./subtree');
-// domlike = the dom like object to serialize, includeIframes = include nodes from iframe contentDocument, boolean
-module.exports = function serialize(domLike, includeIframes = true) {
+/* domlike = the dom like object to serialize
+includeIframes = include nodes from iframe contentDocument, boolean
+domErrorOutput = controls how errors are outputed if an unsupported node or element is encountered, string 
+'all' outputs to console.log & injects a html comment into the outputted html
+'console' outputs details to console log only
+'comments' outputs error details to html comment only */
+module.exports = function serialize(domLike, includeIframes = true, domErrorOutput = 'all') {
   const outputDOM = new JSDOM();
   const document = outputDOM.window.document;
   const rootNode = document.children[0];
@@ -34,7 +39,7 @@ module.exports = function serialize(domLike, includeIframes = true) {
 
     node.children.forEach(n => {
       if (n.childNodeCount === undefined) return; // weird, useless noise in the tree for some reason
-      const child = subtree.constructSubtreeForNode(document, n,  includeIframes);
+      const child = subtree.constructSubtreeForNode(document, n,  includeIframes, domErrorOutput);
       rootNode.appendChild(child);      
     });
   });
