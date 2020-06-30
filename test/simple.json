@@ -162,7 +162,18 @@
 					"nodeValue": "\n      window.title = 'Hello world!'\n    "
 				}],
 				"attributes": []
-			}],
+			}
+		],
+			"attributes": []
+		}, {
+			"nodeId": 17,
+			"parentId": 3,
+			"backendNodeId": 18,
+			"nodeType": 1,
+			"nodeName": "BODY",
+			"localName": "body",
+			"nodeValue": "",
+			"children": [],
 			"attributes": []
 		}],
 		"attributes": ["lang", "en"],
