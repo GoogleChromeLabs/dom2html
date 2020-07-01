@@ -29,4 +29,20 @@ describe("constructSubtreeForNode", () => {
     expect(subTree.children.length).toEqual(1);
     expect(subTree.children[0].children.length).toEqual(3);
   });
+
+  test("node callback ", () => {
+    const className = 'active';
+    const subTree = subtree.constructSubtreeForNode(
+      document,
+      divNodeLike,
+      undefined,
+      'all',
+      (nodeLike, element) => {
+        element.className = className;
+        element.setAttribute('data-animation', 'fade');
+      }
+    );
+    expect(subTree.className).toEqual(className);
+    expect(subTree.getAttribute('data-animation')).toEqual('fade');
+  });
 });
