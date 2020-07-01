@@ -80,8 +80,8 @@ module.exports = {
 
     // create the shadow host fragment
     const elem = domNode.createElemForNode(document, domErrorOutput, shadowTree);
+
     function distributeNodes(node, elem) {
-      console.log(node.distributedNodes);
       if(!node.distributedNodes) return;
       node.distributedNodes.forEach(distributedNode => {
         const distributedElem = this.constructSubtreeForNode(document, backendNodes[distributedNode.backendNodeId], includeIframes, domErrorOutput);
