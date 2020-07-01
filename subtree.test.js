@@ -1,33 +1,32 @@
 const {NODE_TYPES, createElemForNode} = require("./dom-node");
-const {constructSubtreeForNode, constructShadowTree} = require("./subtree");
+const subtree = require("./subtree");
+
+const divNodeLike = {
+  nodeType: NODE_TYPES.ELEMENT_NODE,
+  nodeName: "DIV",
+  children: []
+};
 
 describe("constructSubtreeForNode", () => {
-  test("empty subtree", () => {
-    const nodeName = "DIV";
-    const subTree = constructSubtreeForNode(document, {
-      nodeType: NODE_TYPES.ELEMENT_NODE,
-      nodeName: nodeName,
-      children: []
-    });
-    
-    expect(subTree.tagName).toEqual(nodeName);
+  test("empty children", () => {
+    const subTree = subtree.constructSubtreeForNode(document, divNodeLike);
+    expect(subTree.tagName).toEqual("DIV");
     expect(subTree.children.length).toEqual(0);
   });
 
-  // TODO Write test continue after fix `this` keyword of subtree.js
-  // test("shadow root", () => {
-  //   const nodeName = "DIV";
-  //   const subTree = constructSubtreeForNode(document, {
-  //     nodeType: NODE_TYPES.ELEMENT_NODE,
-  //     nodeName: nodeName,
-  //     children: [createElemForNode(document, 'all', {
-  //       nodeType: NODE_TYPES.ELEMENT_NODE,
-  //       nodeName: nodeName
-  //     })],
-  //     shadowRoots: [createElemForNode(document, 'all', {
-  //       nodeType: NODE_TYPES.ELEMENT_NODE,
-  //       nodeName: nodeName
-  //     })]
-  //   });
-  // });
+  test("basic children ", () => {
+    const subTree = subtree.constructSubtreeForNode(document, {
+      ...divNodeLike,
+      children: [{
+        ...divNodeLike,
+        children: [
+          divNodeLike,
+          divNodeLike,
+          divNodeLike
+        ]
+      }]
+    });
+    expect(subTree.children.length).toEqual(1);
+    expect(subTree.children[0].children.length).toEqual(3);
+  });
 });
