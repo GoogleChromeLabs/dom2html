@@ -1,4 +1,4 @@
-const {NODE_TYPES, createElemForNode} = require("./dom-node");
+const {NODE_TYPES} = require("./dom-node");
 const subtree = require("./subtree");
 
 const divNodeLike = {
@@ -29,6 +29,17 @@ describe("constructSubtreeForNode", () => {
     expect(subTree.children.length).toEqual(1);
     expect(subTree.children[0].children.length).toEqual(3);
   });
+  
+  test("include iframes", () => {
+    const subTree = subtree.constructSubtreeForNode(document, {
+      nodeType: NODE_TYPES.DOCUMENT_NODE,
+      nodeName: "#document",
+      contentDocument: {
+        children: [divNodeLike]
+      }
+    }, true);
+    expect(subTree.children.length).toEqual(1);
+  });
 
   test("node callback ", () => {
     const className = 'active';
@@ -39,10 +50,9 @@ describe("constructSubtreeForNode", () => {
       'all',
       (nodeLike, element) => {
         element.className = className;
-        element.setAttribute('data-animation', 'fade');
+        expect(nodeLike).toEqual(divNodeLike);
       }
     );
     expect(subTree.className).toEqual(className);
-    expect(subTree.getAttribute('data-animation')).toEqual('fade');
   });
 });
