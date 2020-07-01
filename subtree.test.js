@@ -56,3 +56,34 @@ describe("constructSubtreeForNode", () => {
     expect(subTree.className).toEqual(className);
   });
 });
+
+describe("constructShadowTree", () => {
+  test("distributed nodes", () => {
+    const first = { ...divNodeLike, backendNodeId: 1 };
+    const second = { ...divNodeLike, backendNodeId: 3 };
+    const third = { ...divNodeLike, backendNodeId: 5 };
+    const shadowTree = subtree.constructShadowTree(
+      document,
+      {
+        children: [
+          first,
+          second,
+          third
+        ]
+      },
+      undefined,
+      'all',
+      {
+        ...divNodeLike,
+        children: [{
+          ...divNodeLike,
+          distributedNodes: [
+            first,
+            third
+          ]
+        }]
+      }
+    );
+    expect(shadowTree.children[0].children.length).toEqual(2);
+  });
+});
