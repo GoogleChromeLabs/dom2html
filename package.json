@@ -21,9 +21,10 @@
   },
   "homepage": "https://github.com/GoogleChromeLabs/dom2html#readme",
   "dependencies": {
-    "jsdom": "^16.2.2"
+    "jsdom": "^22.1.0"
   },
   "devDependencies": {
-    "jest": "^26.1.0"
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
   }
 }
